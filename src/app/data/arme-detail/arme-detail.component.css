@@ -1,0 +1,14 @@
+.scroller{
+  overflow: scroll;
+}
+
+.textArme {
+  color: #003780;
+  animation: clignote 2s linear infinite;
+  text-align: center;
+  margin-top: 5px;
+  font-weight: bold;
+}
+@keyframes clignote {
+  50% { opacity: 0.2; }
+}

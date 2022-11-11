@@ -1,0 +1,50 @@
+
+<div style="margin: 20px" class="d-flex justify-content-around">
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Tous" value="Tous"(change)="affListChange('Tous')" checked>
+    <label class="form-check-label" for="Tous"><span class="" [ngClass]=" btnRadioSelect == 'Tous' ? 'badge bg-dark ' : 'badge bg-primary' ">Tous</span></label>
+  </div>
+  <div class="form-check form-check-inline" *ngFor="let aff of btnRadio">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="{{aff}}" value="{{aff}}" (change)="affListChange(aff)">
+    <label class="form-check-label "  for="{{aff}}"><span class="" [ngClass]=" btnRadioSelect == aff ? 'badge bg-dark ' : 'badge bg-light text-dark' ">{{aff}}</span></label>
+  </div>
+  <div class="">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="valInput" (keyup)="rechercheHero($event)">
+    <div  *ngIf="existePas " class="alert alert-danger" role="alert">
+      Il n'y a pas de hero avec ce nom
+  </div>
+
+  </div>
+</div>
+
+<div class="card" style="margin : 20px;padding: 20px;border : 1px solid grey;">
+
+  <table class="table table-hover" style="border-radius: 7px">
+    <thead>
+    <tr>
+      <th scope="col"><h5 class="badge rounded-pill bg-light text-dark">Heroes</h5></th>
+      <th scope="col"><h5 class="badge rounded-pill bg-light text-dark">NameHeroes</h5></th>
+      <th scope="col"><h5 class="badge rounded-pill bg-light text-dark">Caractéristique</h5></th>
+      <th scope="col"><h5 class="badge rounded-pill bg-light text-dark">Armes</h5></th>
+      <th scope="col"><h5 class="badge rounded-pill bg-light text-dark">Name Armes</h5></th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let heroArme of heroArme">
+        <td ><img style="width: 100px; height: 100px" src="{{heroArme.hero.imgSource }}" ></td>
+        <td>{{heroArme.hero.name}}</td>
+        <td><span class="" [ngClass]=" btnRadioSelect == 'Attaque' ? 'badge bg-secondary' : '' ">Attaque : {{heroArme.hero.attaque}}</span><br>
+          <span class="" [ngClass]=" btnRadioSelect == 'Dégât' ? 'badge bg-secondary' : '' ">Dégâts : {{heroArme.hero.degats}}</span><br>
+          <span class="" [ngClass]=" btnRadioSelect == 'Esquive' ? 'badge bg-secondary' : '' "> Esquive : {{heroArme.hero.esquive}}</span><br>
+          <span class="" [ngClass]=" btnRadioSelect == 'Point de vie' ? 'badge bg-secondary' : '' ">Point de Vie : {{heroArme.hero.pointVie}}</span><br>
+
+          </td>
+        <td ><img style="width: 100px; height: 100px" src="{{heroArme.arme.imgSource }}" ></td>
+        <td>{{heroArme.arme.name}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

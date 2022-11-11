@@ -1,0 +1,88 @@
+<div class="row g-0 h-100" *ngIf="arme">
+  <div class="card-header" style="margin-top: 10px">
+    <h1 style="text-align: center">Details Armes</h1>
+  </div>
+  <div class=" col-md-3 h-50 mx-auto scroller">
+    <a href="/" class="d-block p-6 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
+      <p class = "textArme">ARMES</p>
+    </a>
+    <ul class="nav nav-pills nav-flush flex-column text-center d-flex h-72" >
+
+      <div class="card mb-4" *ngFor="let image of imageList" [ngClass]="image.url == this.arme.imgSource ? 'border-info' : ''"style="padding: 15px; margin-top: 5px"(click)="selectArme(image.url)">
+        <li class="nav-item">
+          <img src="{{image.url}}" width="40em">
+        </li>
+      </div>
+
+    </ul>
+  </div>
+  <div class="col-md-9 h-50 w-50 " style="background: black;" *ngIf="arme">
+    <img id= "imgprincipale" src="{{this.arme.imgSource}}"  alt="" class="object-cover h-100 w-100" >
+  </div>
+  <div class="row mt-5" *ngIf="arme">
+    <div class="col-md-6">
+      <div class="card text-center">
+
+        <div class="card-body">
+          <button type="button" class="btn position-relative">
+            Ajouter un Hero
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" [ngClass]="totalPoints > 10 ? 'bg-success' : 'bg-danger'">
+                {{totalPoints}}
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </button>
+          <div class="text-center">
+            <span class="badge bg-light text-dark" style="margin-bottom: 5px"><h5>{{this.arme.name}}</h5></span> <br>
+            <input type="text" [(ngModel)]="this.arme.name" class="form-control is-valid" [ngClass]="this.arme.name != ''?'is-valid':'is-invalid' " id="validationServer01" value="Mark" required>
+          </div>
+
+          <div class="p-4 text-center">
+            <div class="" style="margin: 10px">
+              <label>Point de vie</label><br>
+              <button type="button" [attr.disabled]="this.arme.pointVie == -5 || null " (click)="remove('pointVie')"  class="btn btn-danger">-</button>
+              <span class="" style="margin: 5px">{{this.arme.pointVie}}</span>
+              <button type="" [attr.disabled]="(this.arme.pointVie == 5 || null) || (totalPoints == 0 || null) " (click)="add('pointVie')" class="btn btn-success">+</button>
+            </div>
+
+            <div class="" style="margin: 10px">
+              <label>Attaque</label><br>
+              <button type="button" [attr.disabled]="this.arme.attaque == -5 || null " (click)="remove('attaque')" class="btn btn-danger">-</button>
+              <span class="" style="margin: 5px">{{this.arme.attaque}}</span>
+              <button type="button" [attr.disabled]="(this.arme.attaque == 5 || null) || (totalPoints == 0 || null) " (click)="add('attaque')" class="btn btn-success">+</button>
+            </div>
+            <div class="" style="margin: 10px">
+              <label>Dégât</label><br>
+              <button type="button" [attr.disabled]="this.arme.degats == 1 || null " (click)="remove('degat')" class="btn btn-danger">-</button>
+              <span class="" style="margin: 5px">{{this.arme.degats}}</span>
+              <button type="button" [attr.disabled]="(this.arme.degats == 5 || null) || (totalPoints == 0 || null) " (click)="add('degat')" class="btn btn-success">+</button>
+            </div>
+            <div class="" style="margin: 10px">
+              <label>Esquive</label><br>
+              <button type="button" [attr.disabled]="this.arme.esquive == 1 || null " (click)="remove('esquive')"   class="btn btn-danger">-</button>
+              <span class="" style="margin: 5px">{{this.arme.esquive}}</span>
+              <button type="button" [attr.disabled]="(this.arme.esquive == 5 || null) || (totalPoints == 0 || null) " (click)="add('esquive')" class="btn btn-success">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card col-md-6">
+      <img class=" h-75 w-75" src="{{imageUrl || 'assets/ajoutImage.png'}}" alt="">
+      <div class="card-body">
+        <h3 class="card-title">Ajouter une nouvelle image</h3>
+        <div class="mb-3">
+          <input class="form-control" type="file" (change)="onSelectedFile($event)" id="formFileMultiple" multiple >
+        </div>
+        <div>
+          <button class="btn btn-primary" type="button" (click)="saveImageStorage()" [attr.disabled] = "isSelectPhoto == false || null">Ajouter une image</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted m-2">
+    <div class="d-grid gap-2  mx-auto">
+      <button class="btn btn-primary" type="button" (click)="updateArme(this.arme)">Modifier</button>
+    </div>
+  </div>
+</div>
+

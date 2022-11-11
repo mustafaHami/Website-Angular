@@ -1,0 +1,104 @@
+
+<div class="row g-0 h-100" *ngIf="hero">
+  <div class="card-header" style="margin-top: 10px">
+    <h1 style="text-align: center">Details Heroes</h1>
+  </div>
+  <div class=" col-md-6 h-50 mx-auto scroller">
+    <a href="/" class="d-block p-6 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
+      <p class = "textHero">HEROES</p>
+    </a>
+    <ul class="nav nav-pills nav-flush flex-column text-center d-flex h-72" >
+
+      <div class="card mb-4" *ngFor="let image of imageList" [ngClass]="image.url == this.hero.imgSource ? 'border-info' : ''"style="padding: 15px; margin-top: 5px"(click)="selectHeroImg(image.url)">
+        <li class="nav-item">
+          <img src="{{image.url}}" width="40em">
+        </li>
+      </div>
+    </ul>
+  </div>
+  <div class=" col-md-6 h-50 mx-auto scroller">
+    <a href="/" class="d-block p-6 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
+      <p class = "textHero">ARMES PRESENTES</p>
+    </a>
+    <ul class="nav nav-pills nav-flush flex-column text-center d-flex h-72" >
+
+      <div class="card mb-4" *ngFor="let arme of armes" [ngClass]="arme.id == this.hero.idArme ? 'border-info' : ''"style="padding: 15px; margin-top: 5px"(click)="selectArmeImg(arme.imgSource,arme.id)">
+        <li class="nav-item">
+          <img src="{{arme.imgSource}}" width="40em">
+        </li>
+      </div>
+    </ul>
+  </div>
+  <div class="col-md-6 h-50 w-50 " style="background: black;">
+    <img id= "imgprincipale" src="{{imgSourceHero}}"  alt="" class="object-cover h-100 w-100" >
+  </div>
+  <div class="col-md-6 h-50 w-50 " style="background: black;">
+    <img id= "imgprincipale2" src="{{imgSourceArme}}"  alt="" class="object-cover h-100 w-100" >
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <div class="card text-center">
+
+        <div class="card-body">
+          <button type="button" class="btn position-relative">
+            Ajouter un Hero
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" [ngClass]="totalPoints > 10 ? 'bg-success' : 'bg-danger'">
+                {{totalPoints}}
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </button>
+          <div class="text-center">
+            <span class="badge bg-light text-dark" style="margin-bottom: 5px"><h5>{{this.hero.name}}</h5></span> <br>
+            <input type="text" [(ngModel)]="this.hero.name" class="form-control is-valid" [ngClass]="this.hero.name != ''?'is-valid':'is-invalid' " id="validationServer01" value="Mark" required>
+          </div>
+
+          <div class="p-4 text-center">
+            <div class="" style="margin: 10px">
+              <label>Point de vie</label><br>
+              <button type="button" [attr.disabled]="this.hero.pointVie == 1 || null " (click)="remove('pointVie')"  class="btn btn-danger">-</button>
+              <span class="" style="margin: 5px">{{this.hero.pointVie}}</span>
+              <button type="" [attr.disabled]="totalPoints == 0  || null " (click)="add('pointVie')" class="btn btn-success">+</button>
+            </div>
+
+            <div class="" style="margin: 10px">
+              <label>Attaque</label><br>
+              <button type="button" [attr.disabled]="this.hero.attaque == 1 || null " (click)="remove('attaque')" class="btn btn-danger">-</button>
+              <span class="" style="margin: 5px">{{this.hero.attaque}}</span>
+              <button type="button" [attr.disabled]="totalPoints == 0  || null " (click)="add('attaque')" class="btn btn-success">+</button>
+            </div>
+            <div class="" style="margin: 10px">
+              <label>Dégât</label><br>
+              <button type="button" [attr.disabled]="this.hero.degats == 1 || null " (click)="remove('degat')" class="btn btn-danger">-</button>
+              <span class="" style="margin: 5px">{{this.hero.degats}}</span>
+              <button type="button" [attr.disabled]="totalPoints == 0  || null " (click)="add('degat')" class="btn btn-success">+</button>
+            </div>
+            <div class="" style="margin: 10px">
+              <label>Esquive</label><br>
+              <button type="button" [attr.disabled]="this.hero.esquive == 1 || null " (click)="remove('esquive')"   class="btn btn-danger">-</button>
+              <span class="" style="margin: 5px">{{this.hero.esquive}}</span>
+              <button type="button" [attr.disabled]="totalPoints == 0  || null " (click)="add('esquive')" class="btn btn-success">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card col-md-6">
+      <img class=" h-75 w-75" src="{{imageUrl || 'assets/ajoutImage.png'}}" alt="">
+      <div class="card-body">
+        <h3 class="card-title">Ajouter une nouvelle image</h3>
+        <div class="mb-3">
+          <input class="form-control" type="file" (change)="onSelectedFile($event)" id="formFileMultiple" >
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-primary" type="button" (click)="saveImageStorage()"  [attr.disabled] = "isSelectPhoto == false || null">Ajouter une image</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted m-2">
+    <div class="d-grid gap-2  mx-auto">
+      <button class="btn btn-primary" type="button" (click)="updateHero(this.hero)">Modifier</button>
+    </div>
+  </div>
+
+</div>

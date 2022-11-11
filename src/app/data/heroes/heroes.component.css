@@ -1,0 +1,15 @@
+/* HeroesComponent's private CSS styles */
+
+
+h1{
+  border : 1px solid grey;
+  width:200px ;
+  border-radius: 10px;
+  font-family: Lucida Bright;
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+

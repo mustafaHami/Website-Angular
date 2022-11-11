@@ -1,0 +1,38 @@
+
+<h1>My Heroes</h1>
+<div class="row ">
+
+  <div class="card" style="width: 21rem;margin-left: 20px "*ngFor="let heroArme of heroArme| paginate: {
+    id :'listing_pagination',
+    itemsPerPage:4,
+    currentPage:page
+  }">
+    <h3 class="card-title" style="color: #333333">Name : <strong style="color: #A80000">{{heroArme.hero.name}}</strong></h3>
+    <div class="card-body">
+
+      <span style="cursor:pointer; position: absolute; top: 2px; right: 10px;" (click)="toast(heroArme.hero)">❌</span>
+
+
+      <img class="h-75 w-75 " src="{{heroArme.hero.imgSource }}" >
+
+    </div>
+    <div class="row m-3">
+      <div class="card-title">Armes</div>
+      <div class="col-md-6">
+        <img class="h-50 w-50 " src="{{heroArme.arme.imgSource }}" >
+      </div>
+      <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">{{heroArme.arme.name }}</h5>
+        </div>
+      </div>
+    </div>
+      <a href="#" class="btn btn-primary m-3" routerLink="/detailHero/{{heroArme.hero.id}}" > Details </a>
+  </div>
+
+
+  </div>
+
+<div class="page-item ">
+  <pagination-controls id = "listing_pagination" [maxSize]="5" [directionLinks]="true" (pageChange)="page = $event"></pagination-controls>
+</div>

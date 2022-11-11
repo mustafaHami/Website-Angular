@@ -1,0 +1,25 @@
+
+<h1>My Armes</h1>
+<div class="row g-2 d-flex justify-content-center" >
+
+  <div class="card " style="width: 20rem;margin-left: 20px"*ngFor="let arme of armes| paginate: {
+    id :'listing_pagination',
+    itemsPerPage:4,
+    currentPage:page
+  }">
+    <h3 class="card-title">Name : <span class="badge rounded-pill bg-light text-dark" >{{arme.name}}</span></h3>
+    <div class="card-body" style="width: 12rem;">
+
+      <span style="cursor:pointer; position: absolute; top: 2px; right: 10px;" (click)="toast(arme)">❌</span>
+
+
+
+      <img class=" h-75 w-75 mb-2" src="{{arme.imgSource}}"  style="width: 10rem;"> <br>
+
+    </div>
+    <a href="#" class="btn btn-primary mb-2" routerLink="/detailArme/{{arme.id}}"> Details </a>
+  </div>
+  <div class="page-item ">
+    <pagination-controls id = "listing_pagination" [maxSize]="5" [directionLinks]="true" (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>
