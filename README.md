@@ -1,4 +1,4 @@
-# My Javascript(Angular) Project
+# My TypeScript(Angular) Project
 #### It is a website developed in  TypeScript, Angular, Javascript, Html, Css, Firebase and Bootstrap. I realized this project during my licence.
 
 - <sub>✅ Create, Delete and Update hero and weapon</sub>
